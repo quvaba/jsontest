@@ -1,33 +1,83 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import pagesJson from './pages.json';
 import peopleJson from './people.json';
 import projectsJson from './projects.json';
 import publicationsJson from './publications.json';
+import {getMatchingAuthors} from './utils/utils.js'
 
-// Page - a page of the website.
-//  Has a navigation bar and page content that varies based on
-//  which section of the site you are browsing
-class Page extends Component {
+// App - contains everything.
+//    Has a navigation bar and page content that varies based on
+//    which section of the site you are browsing
+// [STATE] currentPage - The page being displayed. Called by NavBar.
+class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      currentPage: "Publications"
+    };
+    this.goToPage = this.goToPage.bind(this);
+  }
+
+  goToPage(pageName){
+    this.setState({
+      currentPage: pageName
+    });
+  }
+
   render(){
+    let pageContents;
+    let current = this.state.currentPage;
+
+    switch (current) {
+      case "Home":
+        break;
+      case "People":
+        pageContents = <ListPage json={peopleJson} pageType = "People"/>;
+        break;
+      case "Publications":
+        pageContents = <ListPage json={publicationsJson} pageType = "Publications"/>;
+        break;
+      case "Projects":
+        pageContents = <ListPage json={projectsJson} pageType = "Projects" onClick={this.goToPage}/>;
+        break;
+      default:
+        pageContents = <ProjectPage json={projectsJson} title={current} />;
+        break;
+    }
+
     return(
-      <div>
-        <NavBar pages="pagesJson" className="navigation"/>
-        <EntryList json={publicationsJson} />
+      <div className="App">
+        <NavBar json={pagesJson} className="navigation" loadPage={this.goToPage}/>
+        {pageContents}
       </div>
     );
   }
 }
 
+// NavBar - the navigation bar at the top of the page.
+//    Displays all pages. Clickable.
+// [PROPS] json - json of pages to be read from
+//         loadPage - function that passes page clicked to App
 class NavBar extends Component {
-  //should be able to render off of a json array
+  constructor(props){
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(pageName){
+    this.props.loadPage(pageName);
+  }
+
   render(){
-    let pagesArray = {pagesJson}.pagesJson.pages;
+    let pagesArray = this.props.json.pages;
     let pages = pagesArray.map(
-      (page) => <span key={pagesArray.indexOf(page)}>
-                    {page.title}
-                </span>
+      (page) => <NavOption
+                  key={pagesArray.indexOf(page)}
+                  title={page.title}
+                  onClick={this.handleClick}
+                />
     );
 
     return(
@@ -36,65 +86,211 @@ class NavBar extends Component {
   }
 }
 
-// Profile - used on the People page
-//
-class Profile extends Component {
+// NavOption - one of the links in the navigation bar.
+// [PROPS] onClick - function to be called when clicked
+//         key - unique key for map
+//         title - the title of the page it links to
+class NavOption extends Component {
+  constructor(props){
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(){
+    this.props.onClick(this.props.title);
+  }
+
   render(){
     return(
-      <div> </div>
+      <span onClick={this.handleClick}>{this.props.title}</span>
     );
   }
 }
 
-class Entry extends Component {
-  render(){
-    let allAuthors = {peopleJson}.peopleJson.entries;
-    let authorIds = this.props.authorIds;
-    var entryAuthors = allAuthors.filter(function(value, index, arr){
-      return (authorIds.includes(value.netId));
-    });
+                            ////////////////////////////////////////////////////
+                            //                                                //
+                            //                INDIVIDUAL PAGES                //
+                            //                                                //
+                            ////////////////////////////////////////////////////
+// PLANNING
+// profiles should return a span of class "profile"
+//    style w grid css.
+// people, publications, and projects pages
+// are all lists divided by sections.
+// section prop for page?
+// OH YOU CAN ADD INSIDE THE https://reactjs.org/docs/composition-vs-inheritance.html
 
-    let authorList = entryAuthors.map(
-      (author) => <span key={entryAuthors.indexOf(author)}>
-                    {author.name}
-                  </span>
-    );
+
+// ListPage -
+//
+// [PROPS] json - the json to be read from
+//         pageType - the type of page to render
+class ListPage extends Component {
+  constructor(props){
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(projectTitle){
+    this.props.onClick(projectTitle);
+  }
+
+  render(){
+    let entryList;
+
+    switch (this.props.pageType) {
+      case "People":
+        let people = this.props.json.entries;
+        entryList = people.map(
+          (person) => <li key={people.indexOf(person)}>
+                        <Person
+                          name={person.name}
+                          pageUrl={person.pageUrl}
+                          photoUrl={person.photoUrl}
+                          status={person.status}
+                          degree={person.degree}
+                        />
+                     </li>
+        );
+        break;
+
+      case "Projects":
+        let projects = this.props.json.entries;
+        entryList = projects.map(
+          (project) => <li key={projects.indexOf(project)}>
+                        <Project
+                          title={project.title}
+                          authors={project.authorIds}
+                          description={project.description}
+                          onClick={this.handleClick}
+                        />
+                     </li>
+        );
+        break;
+
+      case "Publications":
+        let publications = this.props.json.entries;
+        entryList = publications.map(
+          (publication) => <li key={publications.indexOf(publication)}>
+                        <Publication
+                          title={publication.title}
+                          year={publication.year}
+                          conference={publication.conference}
+                          url={publication.url}
+                          authors={publication.authorIds}
+                          awards={publication.awards}
+                        />
+                     </li>
+        );
+        break;
+
+      default:
+
+    }
 
     return(
-      <div className = "entry">
-        <div>{this.props.title}</div>
-        <div>{this.props.description}</div>
-        <div>{authorList}</div>
+      <div>{entryList}</div>
+    );
+  }
+}
+
+/*
+ * Publication -
+ * [PROPS] title, year, conference, url, authors (array), awards
+ *
+ */
+class Publication extends Component {
+  render(){
+    let authorList = getMatchingAuthors({peopleJson}, this.props.authors);
+    //handle awards...
+
+    return(
+      <div className="publication">
+        <a href={this.props.url}>{this.props.title}</a>
+        {this.props.conference}
+        {authorList}
       </div>
     );
   }
 }
 
-class EntryList extends Component {
+/* Person -
+ * [PROPS] name, pageUrl, photoUrl, status, degree
+ */
+class Person extends Component {
   render(){
-    let summariesArray = this.props.json.entries;
-    let entryList = summariesArray.map(
-      (entry) => <li key={summariesArray.indexOf(entry)}>
-                    <Entry title={entry.title} description={entry.description} authorIds={entry.authorIds}/>
+    return(
+      <div>
+        <a href={this.props.pageUrl}>{this.props.name} </a>
+        <img src={this.props.photoUrl} />
+        <span>{this.props.degree}</span>
+      </div>
+    );
+  }
+}
+
+// Project -
+// up to 2 images
+// unspecified length array of paired paragraph and header
+// title, authors, motivation
+// links?
+// [PROPS]
+class Project extends Component {
+  constructor(props){
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(){
+    this.props.onClick(this.props.title);
+  }
+
+  render(){
+    let authorList = getMatchingAuthors({peopleJson}, this.props.authors);
+
+    return(
+      <div className = "project">
+        <div onClick={this.handleClick}>{this.props.title}</div>
+        <div>{this.props.description}</div>
+        {authorList}
+      </div>
+    );
+  }
+}
+
+class ProjectPage extends Component {
+  render(){
+    //search for matching
+    let allEntries = this.props.json.entries;
+    let title = this.props.title;
+    let targetEntry = allEntries.filter(function(value, index, arr){
+      return (title === value.title);
+    });
+
+    targetEntry = targetEntry[0];
+    let authorList = getMatchingAuthors({peopleJson}, targetEntry.authorIds);
+
+    let bodyList = targetEntry.body.map(
+      (bodySection) => <li key={targetEntry.body.indexOf(bodySection)}>
+                    <div className="project-body">
+                      <div>{bodySection.sectionTitle}</div>
+                      <div>{bodySection.sectionContent}</div>
+                    </div>
                  </li>
     );
 
     return(
-      <div className = "entry-list">
-        {entryList}
+      <div className = "project-page">
+        <div> {title} </div>
+        <div> {authorList} </div>
+        <img src={targetEntry.imageUrls[0]}/>
+        {bodyList}
+        <img src={targetEntry.imageUrls[1]}/>
+        {targetEntry.publications}
       </div>
     );
   }
 }
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Page />
-      </div>
-    );
-  }
-}
 
 export default App;
