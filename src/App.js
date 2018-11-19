@@ -254,15 +254,31 @@ class Course extends Component {
   render(){
     return(
       <div>
-       { this.props.url ? (
-          <div><a href={this.props.url}>{this.props.title}</a></div>
-        ) : (
-          <div>{this.props.title} ({this.props.abbrev})</div>
-        )
+
+       { this.props.url ?
+        (<div><a href={this.props.url}>{this.props.title}</a></div>) :
+        (<div>{this.props.title} ({this.props.abbrev})</div>)
        }
-       <div><span>{this.props.abbrev}</span></div>
+
+        <div><span>{this.props.abbrev}</span></div>
         <div><span>{this.props.schedule}</span></div>
         <div><span>{this.props.description}</span></div>
+
+       {this.props.prior_versions.length > 0 ?
+        (
+          <div>Prior versions of the course
+
+            {this.props.prior_versions.map(priorVersion =>
+                priorVersion.url ?
+                (<span> - <a href={priorVersion.url}> {priorVersion.year} </a> </span>) :
+                (<span> - {priorVersion.year} </span>)
+                )
+            }
+
+          </div>
+        ) :
+        (<div></div>)
+       }
       </div>
     );
   }

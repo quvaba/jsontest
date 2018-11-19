@@ -6,10 +6,20 @@
       "abbrev": "CS 598 KGK",
       "url": "http://social.cs.uiuc.edu/class/cs598kgk/",
       "description": "This class explores the presentation of self, the presentation of collectives, the presentation of news, and social dynamics in these online spaces--and how algorithmic intervention shapes them from the perspective of social signalling theory.",
-      "prior_versions": {
-          "year" : ["Fall 2006","Fall 2005","Fall 2004"],
-          "url" : ["http://social.cs.uiuc.edu/class/cs598kgk-06/","http://social.cs.uiuc.edu/class/cs598kgk-fall05/","http://social.cs.uiuc.edu/class/cs598kgk-04/"]
-      }
+      "prior_versions": [
+          {
+          "year" :"Fall 2006",
+          "url" : "http://social.cs.uiuc.edu/class/cs598kgk-06/"
+          },
+          {
+          "year" :"Fall 2005",
+          "url" : "http://social.cs.uiuc.edu/class/cs598kgk-fall05/"
+          },
+          {
+          "year" :"Fall 2004",
+          "url" : "http://social.cs.uiuc.edu/class/cs598kgk-04/"
+          }
+      ]
     },
     {
       "title": "Social Visualization and Social Computing",
@@ -17,10 +27,12 @@
       "abbrev": "CS 498 KGK",
       "url": "http://social.cs.uiuc.edu/class/cs498kgk/",
       "description": "This class explores visualizing social interaction in networked spaces.  We emphasize visualizing the network identity of the person over compilations of online data that characterize information visualization.",
-      "prior_versions": {
-          "year" : ["Spring 2005"],
-          "url" : ["http://social.cs.uiuc.edu/class/cs498kgk-spr05/"]
-      }
+      "prior_versions": [
+        {
+          "year" : "Spring 2005",
+          "url" : "http://social.cs.uiuc.edu/class/cs498kgk-spr05/"
+        }
+      ]
     },
     {
       "title": "Social Computing Seminar",
@@ -28,10 +40,28 @@
       "abbrev": "CS 591 KGK",
       "url": "http://social.cs.uiuc.edu/class/cs591kgk/",
       "description": "This seminar serves as a reading group dealing with topics germane to research in social computation.",
-      "prior_versions": {
-          "year" : ["Spring 2007","Fall 2006","Spring 2006","Fall 2005","Spring 2005"],
-          "url" : ["","","","",""]
-        }
+      "prior_versions": [
+          {
+          "year" :"Spring 2007",
+          "url" : ""
+          },
+          {
+          "year" :"Fall 2006",
+          "url" : ""
+          },
+          {
+          "year" :"Spring 2006",
+          "url" : ""
+          },
+          {
+          "year" :"Fall 2005",
+          "url" : ""
+          },
+          {
+          "year" :"Spring 2005",
+          "url" : ""
+          }
+      ]
     },
     {
       "title": "HCI Seminar",
@@ -39,10 +69,7 @@
       "abbrev": "CS 591 HCI",
       "url": "",
       "description": "",
-      "prior_versions": {
-          "year" : [],
-          "url" : []
-        }
+      "prior_versions": []
     },
     {
       "title": "Multimedia Systems and Applications",
@@ -50,10 +77,7 @@
       "abbrev": "CS 414",
       "url": "http://social.cs.uiuc.edu/class/cs414/",
       "description": "In this course, we will cover fundamental principles of human perception, multimedia interfaces, and multimedia systems.",
-      "prior_versions": {
-          "year" : [],
-          "url" : []
-        }
+      "prior_versions": []
     },
     {
       "title": "Introduction to Human Computer Interaction",
@@ -61,10 +85,7 @@
       "abbrev": "CS 465",
       "url": "",
       "description": "",
-      "prior_versions": {
-          "year" : [],
-          "url" : []
-        }
+      "prior_versions": []
     },
     {
       "title": "Programming Mobile Devices",
@@ -72,10 +93,7 @@
       "abbrev": "CS 598 CEL",
       "url": "",
       "description": "",
-      "prior_versions": {
-          "year" : [],
-          "url" : []
-        }
+      "prior_versions": []
     }
   ]
 }
