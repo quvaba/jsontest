@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import pagesJson from './pages.json';
+import coursesJson from './courses.json';
 import peopleJson from './people.json';
 import projectsJson from './projects.json';
 import publicationsJson from './publications.json';
@@ -41,6 +42,9 @@ class App extends Component {
         break;
       case "Projects":
         pageContents = <ListPage json={projectsJson} pageType = "Projects" onClick={this.goToPage}/>;
+        break;
+      case "Courses":
+        pageContents = <ListPage json={coursesJson} pageType = "Courses"/>;
         break;
       default:
         pageContents = <ProjectPage json={projectsJson} title={current} />;
@@ -184,6 +188,22 @@ class ListPage extends Component {
         );
         break;
 
+      case "Courses":
+        let courses = this.props.json.entries;
+        entryList = courses.map(
+          (course) => <li key={courses.indexOf(course)}>
+                        <Course
+                          title={course.title}
+                          schedule={course.schedule}
+                          abbrev={course.abbrev}
+                          url={course.url}
+                          description={course.description}
+                          prior_versions={course.prior_versions}
+                        />
+                     </li>
+        );
+        break;
+
       default:
 
     }
@@ -224,6 +244,41 @@ class Person extends Component {
         <a href={this.props.pageUrl}>{this.props.name} </a>
         <img src={this.props.photoUrl} />
         <span>{this.props.degree}</span>
+      </div>
+    );
+  }
+}
+
+// COURSE
+class Course extends Component {
+  render(){
+    return(
+      <div>
+
+       { this.props.url ?
+        (<div><a href={this.props.url}>{this.props.title}</a></div>) :
+        (<div>{this.props.title} ({this.props.abbrev})</div>)
+       }
+
+        <div><span>{this.props.abbrev}</span></div>
+        <div><span>{this.props.schedule}</span></div>
+        <div><span>{this.props.description}</span></div>
+
+       {this.props.prior_versions.length > 0 ?
+        (
+          <div>Prior versions of the course
+
+            {this.props.prior_versions.map(priorVersion =>
+                priorVersion.url ?
+                (<span> - <a href={priorVersion.url}> {priorVersion.year} </a> </span>) :
+                (<span> - {priorVersion.year} </span>)
+                )
+            }
+
+          </div>
+        ) :
+        (<div></div>)
+       }
       </div>
     );
   }
