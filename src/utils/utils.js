@@ -10,7 +10,7 @@ export function getMatchingAuthors(peopleJson, netIds){
   });
 
   let authorList = entryAuthors.map(
-    (author) => <span key={entryAuthors.indexOf(author)}>
+    (author) => <span className="Author" key={entryAuthors.indexOf(author)}>
                   {author.name}
                 </span>
   );

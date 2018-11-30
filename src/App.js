@@ -53,7 +53,7 @@ class App extends Component {
 
     return(
       <div className="App">
-        <NavBar json={pagesJson} className="navigation" loadPage={this.goToPage}/>
+        <NavBar json={pagesJson} loadPage={this.goToPage}/>
         {pageContents}
       </div>
     );
@@ -85,7 +85,7 @@ class NavBar extends Component {
     );
 
     return(
-      <div> {pages} </div>
+      <div className="NavBar"> {pages} </div>
     );
   }
 }
@@ -106,7 +106,9 @@ class NavOption extends Component {
 
   render(){
     return(
-      <span onClick={this.handleClick}>{this.props.title}</span>
+      <span onClick={this.handleClick} className="NavOption">
+        {this.props.title}
+      </span>
     );
   }
 }
@@ -116,14 +118,6 @@ class NavOption extends Component {
                             //                INDIVIDUAL PAGES                //
                             //                                                //
                             ////////////////////////////////////////////////////
-// PLANNING
-// profiles should return a span of class "profile"
-//    style w grid css.
-// people, publications, and projects pages
-// are all lists divided by sections.
-// section prop for page?
-// OH YOU CAN ADD INSIDE THE https://reactjs.org/docs/composition-vs-inheritance.html
-
 
 // ListPage -
 //
@@ -209,7 +203,7 @@ class ListPage extends Component {
     }
 
     return(
-      <div>{entryList}</div>
+      <div className="ListPage">{entryList}</div>
     );
   }
 }
@@ -225,7 +219,7 @@ class Publication extends Component {
     //handle awards...
 
     return(
-      <div className="publication">
+      <div>
         <a href={this.props.url}>{this.props.title}</a>
         {this.props.conference}
         {authorList}
@@ -304,8 +298,8 @@ class Project extends Component {
     let authorList = getMatchingAuthors({peopleJson}, this.props.authors);
 
     return(
-      <div className = "project">
-        <div onClick={this.handleClick}>{this.props.title}</div>
+      <div>
+        <div onClick={this.handleClick} className="ProjectTitle">{this.props.title}</div>
         <div>{this.props.description}</div>
         {authorList}
       </div>
@@ -327,7 +321,7 @@ class ProjectPage extends Component {
 
     let bodyList = targetEntry.body.map(
       (bodySection) => <li key={targetEntry.body.indexOf(bodySection)}>
-                    <div className="project-body">
+                    <div>
                       <div>{bodySection.sectionTitle}</div>
                       <div>{bodySection.sectionContent}</div>
                     </div>
@@ -335,7 +329,7 @@ class ProjectPage extends Component {
     );
 
     return(
-      <div className = "project-page">
+      <div className="ProjectPage">
         <div> {title} </div>
         <div> {authorList} </div>
         <img src={targetEntry.imageUrls[0]}/>

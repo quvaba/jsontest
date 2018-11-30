@@ -1,4 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+body{
+  background-color: #131b28;
+}
+
+a{
+  color: #99b2db;
+  text-decoration: none;
+}
+
+a:hover{
+  color: yellow;
+}
+
+li{
+  list-style-type: none;
+  margin-bottom: 1.5em;
+}
+
 .App {
-  margin: 5em;
+  margin: 3em;
   text-align: left;
+  font-family: "Lato";
+  color: white;
+}
+
+.NavOption{
+  margin: .5em;
+  font-size: 1.2em;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.NavOption:hover{
+  color: cyan;
+  animation: nav-hover .5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.ListPage{
+  margin: 3em 3em 10em 10em;
+  max-width: 60vw;
+}
+
+.ProjectPage{
+  margin: 3em;
+}
+
+.ProjectTitle{
+  color: yellow;
+  cursor: pointer
+}
+
+.Author{
+  margin-right: 1em;
+}
+
+
+@keyframes nav-hover {
+  from {text-shadow: 0px 0px magenta;}
+  to {text-shadow: -4px -4px magenta;}
 }
