@@ -18,7 +18,7 @@ li{
 }
 
 .App {
-  margin: 3em;
+  /*margin: 3em;*/
   text-align: left;
   font-family: "Lato";
   color: white;
@@ -39,8 +39,8 @@ li{
 }
 
 .ListPage{
-  margin: 3em 3em 10em 10em;
-  max-width: 60vw;
+  /*margin: 3em 3em 10em 10em;
+  max-width: 60vw;*/
 }
 
 .ProjectPage{
@@ -53,12 +53,17 @@ li{
 }
 
 .Author{
-  margin-right: 1em;
+  margin-right: .5em;
 }
 
 .PersonImage{
-  max-width: 10em;
-  max-height: 10em;
+  width: 100%;
+  max-width: 25em;
+  max-height: 25em;
+}
+
+.PublicationTitle{
+  margin-right: .5em;
 }
 
 

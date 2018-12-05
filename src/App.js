@@ -6,6 +6,9 @@ import peopleJson from './people.json';
 import projectsJson from './projects.json';
 import publicationsJson from './publications.json';
 import {getMatchingAuthors} from './utils/utils.js'
+import Grid from '@material-ui/core/Grid';
+
+// 1. grid margins (including project pages)
 
 // App - contains everything.
 //    Has a navigation bar and page content that varies based on
@@ -64,6 +67,7 @@ class App extends Component {
 //    Displays all pages. Clickable.
 // [PROPS] json - json of pages to be read from
 //         loadPage - function that passes page clicked to App
+//https://react-bootstrap.github.io/components/navbar/
 class NavBar extends Component {
   constructor(props){
     super(props);
@@ -139,17 +143,26 @@ class ListPage extends Component {
     switch (this.props.pageType) {
       case "People":
         let people = this.props.json.entries;
-        entryList = people.map(
-          (person) => <li key={people.indexOf(person)}>
-                        <Person
-                          name={person.name}
-                          pageUrl={person.pageUrl}
-                          photoUrl={person.photoUrl}
-                          status={person.status}
-                          degree={person.degree}
-                        />
-                     </li>
-        );
+        entryList =
+        <Grid container justify="center">
+          <Grid item xs={12} sm={8} lg={6}>
+            <Grid container className="People" justify="flex-start" spacing={16}>
+              {people.map(person => (
+                <Grid key={people.indexOf(person)} item xs={12} sm={6} md={3}>
+                  <Person
+                    name={person.name}
+                    pageUrl={person.pageUrl}
+                    photoUrl={person.photoUrl}
+                    status={person.status}
+                    degree={person.degree}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+        </Grid>
+
+
         break;
 
       case "Projects":
@@ -220,7 +233,7 @@ class Publication extends Component {
 
     return(
       <div>
-        <a href={this.props.url}>{this.props.title}</a>
+        <a href={this.props.url} className="PublicationTitle">{this.props.title}</a>
         {this.props.conference}
         {authorList}
       </div>
@@ -234,11 +247,11 @@ class Publication extends Component {
 class Person extends Component {
   render(){
     return(
-      <div>
-        <a href={this.props.pageUrl}>{this.props.name} </a>
+      <span>
         <img className="PersonImage" src={this.props.photoUrl} />
-        <span>{this.props.degree}</span>
-      </div>
+        <div><a href={this.props.pageUrl}>{this.props.name} </a></div>
+        <div>{this.props.degree}</div>
+      </span>
     );
   }
 }
