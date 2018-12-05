@@ -3,7 +3,7 @@
     {
       "netId": "jgkim2",
       "status": "current",
-      "degree": "PhD candidate",
+      "degree": "PhD",
       "photoUrl": "http://social.cs.uiuc.edu/images/people%20pics/jennifer.jpg",
       "name": "Jennifer G. Kim",
       "pageUrl": "http://jennifergahee.com/"
@@ -11,10 +11,19 @@
     {
       "netId": "hkong6",
       "status": "current",
-      "degree": "PhD candidate",
+      "degree": "PhD",
       "photoUrl": "http://social.cs.uiuc.edu/images/people%20pics/Hidy.jpg",
       "name": "Hidy Kong",
       "pageUrl": "http://www.hidykong.com/"
+    },
+    {
+      "netId": "efekarakus",
+      "status": "alumni",
+      "degree": "MS",
+      "photoUrl": "http://social.cs.uiuc.edu/images/people%20pics/Efe.jpeg",
+      "name": "Efe Karakus",
+      "pageUrl": "https://www.efekarakus.com/",
+      "currentRole": "Amazon"
     }
   ]
 }

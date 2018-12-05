@@ -236,7 +236,7 @@ class Person extends Component {
     return(
       <div>
         <a href={this.props.pageUrl}>{this.props.name} </a>
-        <img src={this.props.photoUrl} />
+        <img className="PersonImage" src={this.props.photoUrl} />
         <span>{this.props.degree}</span>
       </div>
     );

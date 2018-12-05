@@ -56,6 +56,11 @@ li{
   margin-right: 1em;
 }
 
+.PersonImage{
+  max-width: 10em;
+  max-height: 10em;
+}
+
 
 @keyframes nav-hover {
   from {text-shadow: 0px 0px magenta;}
