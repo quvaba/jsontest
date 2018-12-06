@@ -4,6 +4,7 @@ import './App.css';
 import pagesJson from './pages.json';
 import coursesJson from './courses.json';
 import peopleJson from './people.json';
+import karrieJson from './karrie.json';
 import projectsJson from './projects.json';
 import publicationsJson from './publications.json';
 import {getMatchingAuthors} from './utils/utils.js'
@@ -21,7 +22,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      currentPage: "Publications"
+      currentPage: "Home"
     };
     this.goToPage = this.goToPage.bind(this);
   }
@@ -38,6 +39,7 @@ class App extends Component {
 
     switch (current) {
       case "Home":
+        pageContents = <ListPage json={karrieJson} pageType = "Home"/>;
         break;
       case "People":
         pageContents = <ListPage json={peopleJson} pageType = "People"/>;
@@ -259,6 +261,28 @@ class ListPage extends Component {
         </Grid>
         break;
 
+      case "Home":
+        let homeinfo = this.props.json.entries;
+        entryList =
+        <Grid container justify="center">
+        <Grid item xs={8} sm={6} md={6} lg={6}>
+          {homeinfo.map(
+          (home) => <li key={homeinfo.indexOf(home)}>
+                        <Home
+                          name={home.name}
+                          photoUrl={home.photoUrl}
+                          position={home.position}
+                          email={home.email}
+                          address={home.address}
+                          phone={home.phone}
+                          awards={home.awards}
+                        />
+                     </li>
+        )}
+         </Grid>
+        </Grid>
+        break;
+
       case "Courses":
         let courses = this.props.json.entries;
         entryList =
@@ -309,6 +333,46 @@ class Publication extends Component {
     );
   }
 }
+
+
+
+// COURSE
+class Home extends Component {
+  render(){
+    return(
+      <div>
+          <div>
+            <span className="KarrieIntro">
+                <img className="PersonImage" src={this.props.photoUrl} />
+            </span>
+            <span className="KarrieIntro">
+                <span>
+                  <div id="KarrieText">{this.props.name}</div>
+                  <div>{this.props.position}</div>
+                  <div className="InfoSpacing">{this.props.email}</div>
+                  <div className="InfoSpacing">
+                    {this.props.address.map(addressLine =>
+                      <div> {addressLine} </div>
+                    )}
+                  </div>
+                  <div className="InfoSpacing">{this.props.phone}</div>
+                </span>
+            </span>
+          </div>
+
+          <div className="Awards"> Awards </div>
+          <div className="Awards">
+          {this.props.awards.map( award =>
+              <div> {award} </div>
+            )
+          }
+          </div>
+
+      </div>
+    );
+  }
+}
+
 
 /* Person -
  * [PROPS] name, pageUrl, photoUrl, status, degree

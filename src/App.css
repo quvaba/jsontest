@@ -62,6 +62,38 @@ li{
   max-height: 25em;
 }
 
+.KarrieIntro{
+  display: inline-block;
+  margin: 2em;
+  vertical-align: text-top;
+}
+
+.InfoSpacing{
+  margin-top:1.5em;
+}
+
+.Awards{
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+#KarrieText{
+  font-size: 1.2em;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+#KarrieText:hover{
+  color: cyan;
+  animation: nav-hover .5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+#KarrieImage{
+  width: 40%;
+}
+
 .PublicationTitle{
   margin-right: .5em;
 }
