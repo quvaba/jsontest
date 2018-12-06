@@ -8,7 +8,7 @@ import projectsJson from './projects.json';
 import publicationsJson from './publications.json';
 import {getMatchingAuthors} from './utils/utils.js'
 import Grid from '@material-ui/core/Grid';
-import {Nav, NavItem, Navbar, NavbarBrand, NavbarToggler, Collapse} from 'reactstrap';
+import {Nav, Navbar, NavbarBrand, NavbarToggler, Collapse} from 'reactstrap';
 
 // 1. grid margins (including project pages)
 
