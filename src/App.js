@@ -174,7 +174,7 @@ class ListPage extends Component {
         let people = this.props.json.entries;
         entryList =
         <Grid container justify="center">
-          <Grid item xs={12} sm={8} lg={6}>
+          <Grid item xs={10} sm={8} lg={6}>
             <Grid container className="People" justify="flex-start" spacing={16}>
               {people.map(person => (
                 <Grid key={people.indexOf(person)} item xs={12} sm={6} md={3}>
@@ -196,7 +196,10 @@ class ListPage extends Component {
 
       case "Projects":
         let projects = this.props.json.entries;
-        entryList = projects.map(
+        entryList =
+        <Grid container justify="center">
+        <Grid item xs={10} sm={8} md={8} lg={6}>
+          {projects.map(
           (project) => <li key={projects.indexOf(project)}>
                         <Project
                           title={project.title}
@@ -205,12 +208,17 @@ class ListPage extends Component {
                           onClick={this.handleClick}
                         />
                      </li>
-        );
+        )}
+         </Grid>
+        </Grid>
         break;
 
       case "Publications":
         let publications = this.props.json.entries;
-        entryList = publications.map(
+        entryList =
+        <Grid container justify="center">
+        <Grid item xs={10} sm={8} md={8} lg={6}>
+        {publications.map(
           (publication) => <li key={publications.indexOf(publication)}>
                         <Publication
                           title={publication.title}
@@ -221,12 +229,17 @@ class ListPage extends Component {
                           awards={publication.awards}
                         />
                      </li>
-        );
+        )}
+        </Grid>
+        </Grid>
         break;
 
       case "Courses":
         let courses = this.props.json.entries;
-        entryList = courses.map(
+        entryList =
+        <Grid container justify="center">
+        <Grid item xs={10} sm={8} md={8} lg={6}>
+        {courses.map(
           (course) => <li key={courses.indexOf(course)}>
                         <Course
                           title={course.title}
@@ -237,7 +250,9 @@ class ListPage extends Component {
                           prior_versions={course.prior_versions}
                         />
                      </li>
-        );
+        )}
+        </Grid>
+        </Grid>
         break;
 
       default:
@@ -263,8 +278,8 @@ class Publication extends Component {
     return(
       <div>
         <a href={this.props.url} className="PublicationTitle">{this.props.title}</a>
-        {this.props.conference}
-        {authorList}
+        <div>{this.props.conference}</div>
+        <div>{authorList}</div>
       </div>
     );
   }

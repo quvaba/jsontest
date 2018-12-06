@@ -11,7 +11,12 @@ export function getMatchingAuthors(peopleJson, netIds){
 
   let authorList = entryAuthors.map(
     (author) => <span className="Author" key={entryAuthors.indexOf(author)}>
-                  {author.name}
+                  {author.pageUrl.length > 0 ?
+                    (<a href={author.pageUrl}>{author.name}</a>) :
+                    (<span>{author.name}</span>)
+                  }
+
+
                 </span>
   );
 
