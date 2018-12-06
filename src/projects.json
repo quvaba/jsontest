@@ -3,7 +3,7 @@
     {
       "title": "The invisible Side of Medical Crowdfunding",
       "authorIds": ["jgkim2"],
-      "description": "A growing number of people use online medical crowdfunding sites to solicit financial support for their medical expenses. In medical crowdfunding campaigns, the community support plays a critical role in promoting a campaign webpage to a wider audience and persuading many people to donate money. Despite the importance of the community support behaviors, they are often invisible on medical crowdfunding sites. The goal of this project is to investigate the invisible support behaviors and integrate them into existing medical crowdfunding sites.",
+      "description": "In medical crowdfunding campaigns, community support plays a critical role, but community support behaviors are often invisible on medical crowdfunding sites. This project investigates invisible support behaviors and how to integrate them into existing medical crowdfunding sites.",
       "publications": [
         "Understanding Identity Presentation in Medical Crowdfunding",
         "Not by Money Alone: Social Support Opportunities in Medical Crowdfunding Campaigns",
@@ -26,7 +26,7 @@
     {
       "title": "Plexlines and EnGaze: Visualizing autism pre-screening sessions",
       "authorIds": ["hkong6"],
-      "description": " We present a system to visualize the annotations of videos of children engaged in a 3-5 minute interactive protocol that assesses communicative behavior, the Rapid ABC. Rapid ABC session videos are annotated to capture the child's gestures, gaze, and vocalization -- important developmental indicators for a young child. From these annotations, we create a graphical fingerprint for each session. In doing so, we introduce Plexlines and EnGaze, two webtools for visualizing multiple types of information layered as timelines. ",
+      "description": " We present a system to visualize the annotations of videos of children engaged in an interactive protocol assessing communicative behavior. Annotations capture the child's gestures, gaze, and vocalization -- important developmental indicators. From these annotations, we create a graphical fingerprint for each session. In doing so, we introduce Plexlines and EnGaze, two webtools for visualizing multiple types of information layered as timelines. ",
       "body": "",
       "publications": [
         "A Comparative Study of Visualizations with Different Granularities of Behavior for Communicating about Autism, Proceedings of the ACM on Human-Computer Interaction",
