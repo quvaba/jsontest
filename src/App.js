@@ -265,7 +265,7 @@ class ListPage extends Component {
         let homeinfo = this.props.json.entries;
         entryList =
         <Grid container justify="center">
-        <Grid item xs={8} sm={6} md={6} lg={6}>
+        <Grid item xs={12} sm={11} md={8} lg={6}>
           {homeinfo.map(
           (home) => <li key={homeinfo.indexOf(home)}>
                         <Home
