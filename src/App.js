@@ -172,11 +172,20 @@ class ListPage extends Component {
     switch (this.props.pageType) {
       case "People":
         let people = this.props.json.entries;
+        let currentPeople;
+        let alumniPeople;
+        currentPeople = people.filter(list => {
+          return list.status.toLowerCase().includes("current");
+        });
+        alumniPeople = people.filter(list => {
+          return list.status.toLowerCase().includes("alum");
+        });
         entryList =
         <Grid container justify="center">
           <Grid item xs={10} sm={8} lg={6}>
+           <div className="StudentList">Current Students</div>
             <Grid container className="People" justify="flex-start" spacing={16}>
-              {people.map(person => (
+              {currentPeople.map(person => (
                 <Grid key={people.indexOf(person)} item xs={12} sm={6} md={3}>
                   <Person
                     name={person.name}
@@ -184,6 +193,22 @@ class ListPage extends Component {
                     photoUrl={person.photoUrl}
                     status={person.status}
                     degree={person.degree}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+            <div className="StudentList">Alumni</div>
+            <Grid container className="People" justify="flex-start" spacing={16}>
+              {alumniPeople.map(person => (
+                <Grid key={people.indexOf(person)} item xs={12} sm={6} md={3}>
+                  <Person
+                    name={person.name}
+                    pageUrl={person.pageUrl}
+                    photoUrl={person.photoUrl}
+                    status={person.status}
+                    degree={person.degree}
+                    currentRole={person.currentRole}
+                    gradYear={person.gradYear}
                   />
                 </Grid>
               ))}
@@ -293,8 +318,21 @@ class Person extends Component {
     return(
       <span>
         <img className="PersonImage" src={this.props.photoUrl} />
-        <div><a href={this.props.pageUrl}>{this.props.name} </a></div>
-        <div>{this.props.degree}</div>
+        <div>
+          {this.props.pageUrl.length > 0 ?
+          (<a href={this.props.pageUrl}>{this.props.name} </a>):
+          (<span>{this.props.name}</span>)
+        }
+        </div>
+        <div>{this.props.degree} {this.props.gradYear ?
+          (<span>{this.props.gradYear}</span>) :
+          (<span></span>)
+          }
+        {this.props.currentRole ?
+          (<div>Now at <b>{this.props.currentRole}</b></div>):
+          (<span></span>)
+        }
+        </div>
       </span>
     );
   }

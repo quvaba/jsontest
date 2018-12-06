@@ -66,6 +66,11 @@ li{
   margin-right: .5em;
 }
 
+.StudentList{
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
 
 @keyframes nav-hover {
   from {text-shadow: 0px 0px magenta;}
