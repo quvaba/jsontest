@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import './App.css';
 import pagesJson from './pages.json';
@@ -7,6 +8,7 @@ import projectsJson from './projects.json';
 import publicationsJson from './publications.json';
 import {getMatchingAuthors} from './utils/utils.js'
 import Grid from '@material-ui/core/Grid';
+import {Nav, NavItem, Navbar, NavbarBrand, NavbarToggler, Collapse} from 'reactstrap';
 
 // 1. grid margins (including project pages)
 
@@ -72,10 +74,22 @@ class NavBar extends Component {
   constructor(props){
     super(props);
     this.handleClick = this.handleClick.bind(this);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+
   }
 
   handleClick(pageName){
     this.props.loadPage(pageName);
+  }
+
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
   }
 
   render(){
@@ -89,7 +103,22 @@ class NavBar extends Component {
     );
 
     return(
-      <div className="NavBar"> {pages} </div>
+      <div className="NavBar">
+      <Navbar className="navbar-dark" expand="md">
+
+          <NavbarBrand href="/">Social Spaces</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+
+      <Collapse isOpen={this.state.isOpen} navbar>
+
+      <Nav navbar>
+      {pages}
+      </Nav>
+
+      </Collapse>
+
+      </Navbar>
+      </div>
     );
   }
 }
