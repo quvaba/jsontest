@@ -11,8 +11,6 @@ import {getMatchingAuthors} from './utils/utils.js'
 import Grid from '@material-ui/core/Grid';
 import {Nav, Navbar, NavbarBrand, NavbarToggler, Collapse} from 'reactstrap';
 
-// 1. grid margins (including project pages)
-
 // App - contains everything.
 //    Has a navigation bar and page content that varies based on
 //    which section of the site you are browsing
@@ -325,7 +323,7 @@ class Publication extends Component {
     //handle awards...
 
     return(
-      <div>
+      <div className="Publication">
         <a href={this.props.url} className="PublicationTitle">{this.props.title}</a>
         <div>{this.props.conference}</div>
         <div>{authorList}</div>
@@ -341,7 +339,7 @@ class Home extends Component {
   render(){
     return(
       <div>
-          <div>
+          <div className="KarrieIntroContainer">
             <span className="KarrieIntro">
                 <img className="PersonImage" src={this.props.photoUrl} />
             </span>
@@ -380,8 +378,10 @@ class Home extends Component {
 class Person extends Component {
   render(){
     return(
-      <span>
-        <img className="PersonImage" src={this.props.photoUrl} />
+      <span className="Person">
+        <div className="PeopleImageContainer">
+          <img className="PersonImage" src={this.props.photoUrl} />
+        </div>
         <div>
           {this.props.pageUrl.length > 0 ?
           (<a href={this.props.pageUrl}>{this.props.name} </a>):
