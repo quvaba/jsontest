@@ -1,12 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import './App.css';
-import pagesJson from './pages.json';
-import coursesJson from './courses.json';
-import peopleJson from './people.json';
-import karrieJson from './karrie.json';
-import projectsJson from './projects.json';
-import publicationsJson from './publications.json';
+import pagesJson from './data/pages.json';
+import coursesJson from './data/courses.json';
+import peopleJson from './data/people.json';
+import karrieJson from './data/karrie.json';
+import projectsJson from './data/projects.json';
+import publicationsJson from './data/publications.json';
 import {getMatchingAuthors} from './utils/utils.js'
 import Grid from '@material-ui/core/Grid';
 import {Nav, Navbar, NavbarBrand, NavbarToggler, Collapse} from 'reactstrap';
@@ -37,7 +37,10 @@ class App extends Component {
 
     switch (current) {
       case "Home":
-        pageContents = <ListPage json={karrieJson} pageType = "Home"/>;
+        pageContents = <HomePage />
+        break;
+      case "Karrie":
+        pageContents = <ListPage json={karrieJson} pageType = "Karrie"/>;
         break;
       case "People":
         pageContents = <ListPage json={peopleJson} pageType = "People"/>;
@@ -230,6 +233,7 @@ class ListPage extends Component {
                           title={project.title}
                           authors={project.authorIds}
                           description={project.description}
+                          publications={project.publications}
                           onClick={this.handleClick}
                         />
                      </li>
@@ -259,21 +263,21 @@ class ListPage extends Component {
         </Grid>
         break;
 
-      case "Home":
-        let homeinfo = this.props.json.entries;
+      case "Karrie":
+        let karrieinfo = this.props.json.entries;
         entryList =
         <Grid container justify="center">
         <Grid item xs={12} sm={11} md={8} lg={6}>
-          {homeinfo.map(
-          (home) => <li key={homeinfo.indexOf(home)}>
-                        <Home
-                          name={home.name}
-                          photoUrl={home.photoUrl}
-                          position={home.position}
-                          email={home.email}
-                          address={home.address}
-                          phone={home.phone}
-                          awards={home.awards}
+          {karrieinfo.map(
+          (karrie) => <li key={karrieinfo.indexOf(karrie)}>
+                        <Karrie
+                          name={karrie.name}
+                          photoUrl={karrie.photoUrl}
+                          position={karrie.position}
+                          email={karrie.email}
+                          address={karrie.address}
+                          phone={karrie.phone}
+                          awards={karrie.awards}
                         />
                      </li>
         )}
@@ -333,10 +337,21 @@ class Publication extends Component {
 }
 
 
-
-// COURSE
-class Home extends Component {
+class Karrie extends Component {
   render(){
+  /*  let allProjects = projectsJson.entries;
+    let featuredProjects = allProjects.filter(
+      function(value, index, arr){
+        return (value.onFrontPage == true);
+      }
+    );
+
+    let projList = featuredProjects.map(
+      (project) => <li>
+          <div>{project.title}</div>
+      </li>
+    );*/
+
     return(
       <div>
           <div className="KarrieIntroContainer">
@@ -461,6 +476,33 @@ class Project extends Component {
         <div onClick={this.handleClick} className="ProjectTitle">{this.props.title}</div>
         <div>{this.props.description}</div>
         {authorList}
+        <ProjectPublications publications={this.props.publications} />
+      </div>
+    );
+  }
+}
+
+// [PROPS] publications - an array of publication titles to look up
+class ProjectPublications extends Component {
+  render(){
+
+    let allEntries = publicationsJson.entries;
+    let publications = this.props.publications;
+    let matchingEntries = allEntries.filter(
+      function(value, index, arr){
+        for (var i = 0; i < publications.length; i++) {
+          return (publications[i] == value.title);
+        }
+      }
+    );
+
+    let pubList = matchingEntries.map(
+      (entry) => <a href={entry.url}> {entry.title} </a>
+    );
+
+    return(
+      <div className="ProjectPublications">
+        {pubList}
       </div>
     );
   }
@@ -481,7 +523,7 @@ class ProjectPage extends Component {
     let bodyList = targetEntry.body.map(
       (bodySection) => <li key={targetEntry.body.indexOf(bodySection)}>
                     <div>
-                      <div>{bodySection.sectionTitle}</div>
+                      <div className="ProjectSectionTitle">{bodySection.sectionTitle}</div>
                       <div>{bodySection.sectionContent}</div>
                     </div>
                  </li>
@@ -489,16 +531,57 @@ class ProjectPage extends Component {
 
     return(
       <div className="ProjectPage">
-        <div> {title} </div>
-        <div> {authorList} </div>
-        <img src={targetEntry.imageUrls[0]}/>
-        {bodyList}
-        <img src={targetEntry.imageUrls[1]}/>
-        {targetEntry.publications}
+        <Grid container justify="center">
+          <Grid item xs={12} sm={8} lg={6}>
+            <div className="ProjectPageTitle"> {title} </div>
+            <div> {authorList} </div>
+            <img src={targetEntry.imageUrls[0]}/>
+            {bodyList}
+            <img src={targetEntry.imageUrls[1]}/>
+            {targetEntry.publications}
+          </Grid>
+        </Grid>
       </div>
     );
   }
 }
 
+class HomePage extends Component {
+  render(){
+    let allProjects = projectsJson.entries;
+    let featuredProjects = allProjects.filter(
+      function(value, index, arr){
+        return (value.onFrontPage == true);
+      }
+    );
+
+    let projList = featuredProjects.map(
+      (project) => <li>
+          <div>{project.title}</div>
+      </li>
+    );
+
+    return(
+      <div>
+        <div>
+          Our goal is to investigate sociable systems for mediated communication.
+          This encompasses a wide range of areas:
+
+          → Explore and build virtual-physical spaces for mediated communication
+          → Build communication objects that connect people and/or spaces
+          → Build interactive interfaces that connect spaces
+          → Visualize and study how people interact within social spaces
+          And more !
+        </div>
+
+        <div className="FeaturedProjects">
+          <h2>Featured Projects</h2>
+          {projList}
+        </div>
+      </div>
+
+    );
+  }
+}
 
 export default App;

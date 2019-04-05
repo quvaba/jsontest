@@ -16,7 +16,6 @@ export function getMatchingAuthors(peopleJson, netIds){
                     (<span>{author.name}</span>)
                   }
 
-
                 </span>
   );
 
