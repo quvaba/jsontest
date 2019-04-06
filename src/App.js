@@ -11,10 +11,12 @@ import {getMatchingAuthors} from './utils/utils.js'
 import Grid from '@material-ui/core/Grid';
 import {Nav, Navbar, NavbarBrand, NavbarToggler, Collapse} from 'reactstrap';
 
-// App - contains everything.
-//    Has a navigation bar and page content that varies based on
-//    which section of the site you are browsing
-// [STATE] currentPage - The page being displayed. Called by NavBar.
+
+/**
+ * App - contains everything. Wraps a NavBar and a page contents.
+ * [STATE]
+ * currentPage - The page being displayed. "Home" by default.
+ */
 class App extends Component {
 
   constructor(props){
@@ -66,13 +68,16 @@ class App extends Component {
       </div>
     );
   }
+
 }
 
-// NavBar - the navigation bar at the top of the page.
-//    Displays all pages. Clickable.
-// [PROPS] json - json of pages to be read from
-//         loadPage - function that passes page clicked to App
-//https://react-bootstrap.github.io/components/navbar/
+
+/**
+ * NavBar - the navigation bar at the top of the page.
+ *          https://react-bootstrap.github.io/components/navbar/
+ * [PROPS]
+ * loadPage - function that passes page clicked to App
+ */
 class NavBar extends Component {
   constructor(props){
     super(props);
@@ -96,7 +101,7 @@ class NavBar extends Component {
   }
 
   render(){
-    let pagesArray = this.props.json.pages;
+    let pagesArray = pagesJson.pages;
     let pages = pagesArray.map(
       (page) => <NavOption
                   key={pagesArray.indexOf(page)}
@@ -107,29 +112,28 @@ class NavBar extends Component {
 
     return(
       <div className="NavBar">
-      <Navbar className="navbar-dark" expand="md">
-
+      <Navbar className="navbar-light" expand="md">
           <NavbarBrand href="/">Social Spaces</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
-
-      <Collapse isOpen={this.state.isOpen} navbar>
-
-      <Nav navbar>
-      {pages}
-      </Nav>
-
-      </Collapse>
-
-      </Navbar>
+          <Collapse isOpen={this.state.isOpen} navbar>
+              <Nav navbar>
+              {pages}
+              </Nav>
+          </Collapse>
+        </Navbar>
       </div>
     );
+
   }
 }
 
-// NavOption - one of the links in the navigation bar.
-// [PROPS] onClick - function to be called when clicked
-//         key - unique key for map
-//         title - the title of the page it links to
+
+/**
+ * NavOption - one of the links in the navigation bar.
+ * [PROPS]
+ * onClick - function to be called when clicked.
+ * title - the title of the page it links to
+ */
 class NavOption extends Component {
   constructor(props){
     super(props);
@@ -147,7 +151,9 @@ class NavOption extends Component {
       </span>
     );
   }
+
 }
+
 
                             ////////////////////////////////////////////////////
                             //                                                //
@@ -565,13 +571,13 @@ class HomePage extends Component {
       <div>
         <div>
           Our goal is to investigate sociable systems for mediated communication.
-          This encompasses a wide range of areas:
+          This encompasses a wide range of areas:<br/>
 
-          → Explore and build virtual-physical spaces for mediated communication
-          → Build communication objects that connect people and/or spaces
-          → Build interactive interfaces that connect spaces
-          → Visualize and study how people interact within social spaces
-          And more !
+          ➭ Explore and build virtual-physical spaces for mediated communication<br/>
+          ➭ Build communication objects that connect people and/or spaces<br/>
+          ➭ Build interactive interfaces that connect spaces<br/>
+          ➭ Visualize and study how people interact within social spaces<br/>
+          And more!
         </div>
 
         <div className="FeaturedProjects">

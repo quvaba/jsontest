@@ -1,11 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 body{
   background-color: #131b28;
-  background:
-        linear-gradient(#4c0322, transparent),
-        linear-gradient(to top left, #2b1c05, transparent),
-        linear-gradient(to top right, #03384c, transparent);
-  background-blend-mode: screen;
+  background: white;
 }
 
 a{
@@ -15,7 +11,7 @@ a{
 
 a:hover{
   text-decoration: none;
-  color: white;
+  color: black;
 }
 
 li{
@@ -26,7 +22,7 @@ li{
 .App {
   text-align: left;
   font-family: "Montserrat";
-  color: white;
+  color: black;
 }
 
 .NavOption{
@@ -37,7 +33,7 @@ li{
 }
 
 .NavOption:hover{
-  color: cyan;
+  color: #ffa700;
   animation: nav-hover .5s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
@@ -60,7 +56,7 @@ li{
 }
 
 .ProjectTitle:hover{
-  color: white;
+  color: black;
 }
 
 .ProjectPublications{
@@ -127,7 +123,7 @@ li{
 
 .PublicationTitle{
   font-size: 1.5em;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid black;
   color: #5cbbc4;
 }
 
@@ -142,7 +138,7 @@ li{
   margin-top: 2em;
   margin-bottom: 1em;
   font-size: 1.5em;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid black;
 }
 
 .ProjectPage{
@@ -167,12 +163,12 @@ li{
 }
 
 @keyframes nav-hover {
-  from {text-shadow: 0px 0px magenta;}
-  to {text-shadow: -4px -4px magenta;}
+  from {text-shadow: 0px 0px #5292ff;}
+  to {text-shadow: -4px -4px #5292ff;}
 }
 
 @keyframes project-title-hover {
   from {text-shadow: 2px 2px 7px cyan;}
   to {text-shadow: -2px -2px 7px magenta;}
-  to {color:white;}
+  to {color:black;}
 }
