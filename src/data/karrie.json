@@ -1,0 +1,33 @@
+{
+  "entries": [
+    {
+      "netId": "kkarahal",
+      "status": "advisor",
+      "degree": "PhD",
+      "photoUrl": "http://social.cs.uiuc.edu/people/images/people%20pics/karrie.jpg",
+      "name": "Karrie G Karahalios",
+      "pageUrl": "http://social.cs.uiuc.edu/",
+      "position": "Professor of Computer Science",
+      "email": "kkarahal@illinois.edu",
+      "address": ["4228 Siebel Center", "201 N. Goodwin Avenue", "Urbana, Illinois 61801"],
+      "phone": "217 265 6841",
+      "awards":["Dean’s Award for Excellence in Research, University of Illinois, 2017",
+          "Adobe Faculty Fellowship, 2015",
+          "National Center for Supercomputing Applications (NCSA) Faculty Fellowship, 2015",
+          "Public Engagement Award, University of Illinois Campus Award, 2015",
+          "Engineering Council Outstanding Advising Award, 2014",
+          "Kavli Fellow, 2011",
+          "Sloan Research Fellowship, 2010",
+          "Harvard Berkman Center for Internet and Society Fellow, 2010",
+          "C.W. Gear Outstanding Junior Faculty Award, 2010",
+          "A. Richard Newton Breakthrough Research Award, 2008",
+          "NSF Early Career Award, 2007",
+          "IBM Young Faculty Award, 2006",
+          "Motorola Young Faculty Award, 2005",
+          "CHI Best Paper Award, 2017, 2015, 2009, 2008",
+          "CSCW Best Paper Award, 2010",
+          "CHI Honorable Mention Award, 2018"
+      ]
+    }
+  ]
+}

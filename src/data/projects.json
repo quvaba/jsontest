@@ -1,0 +1,52 @@
+{
+  "entries":[
+    {
+      "title": "The invisible Side of Medical Crowdfunding",
+      "project_id": "medcrowdfunding",
+      "authorIds": ["jgkim2"],
+      "description": "In medical crowdfunding campaigns, community support plays a critical role, but community support behaviors are often invisible on medical crowdfunding sites. This project investigates invisible support behaviors and how to integrate them into existing medical crowdfunding sites.",
+      "imageUrls": [
+
+      ],
+      "body": [
+        {
+          "sectionTitle": "Motivation",
+          "sectionContent": "In the United States, 62% of bankruptcies were a result of medical costs. Recently, patients and their families have raised substantial sums to defray their out-of-pocket medical costs using online crowdfunding sites such as GoFundMe. In one notable medical crowdfunding campaign, the campaign’s URL was shared 409 times, in only two days, bringing in $26,064 from 258 donors. This example shows the important role medical crowdfunding supporters play in assisting the patient by reaching out to a wider audience of potential donors. Despite the importance of the community support behaviors, they are often invisible on medical crowdfunding sites because they occur across different mediums such as social media, online communities, or offline."
+        },
+        {
+          "sectionTitle": "Summary",
+          "sectionContent": "We investigate the invisible side of medical crowdfunding platforms. The first and second projects uncover the import role of support behaviors that are not visible on medical crowdfunding sites: They 1) establish the trustworthiness of patient’s medical situations and 2) mitigate perceived social stigma of revealing one’s personal medical and financial situation. The third project explores ways to recognize the invisible support behaviors publicly on medical crowdfunding webpages."
+        }
+      ],
+      "onFrontPage" : true,
+      "startYear" : 2016
+    },
+    {
+      "title": "Plexlines and EnGaze: Visualizing autism pre-screening sessions",
+      "project_id": "plexlines",
+      "authorIds": ["hkong6"],
+      "description": " We present a system to visualize the annotations of videos of children engaged in an interactive protocol assessing communicative behavior. Annotations capture the child's gestures, gaze, and vocalization -- important developmental indicators. From these annotations, we create a graphical fingerprint for each session. In doing so, we introduce Plexlines and EnGaze, two webtools for visualizing multiple types of information layered as timelines. ",
+      "body": "",
+      "imageUrls": [
+        "http://social.cs.uiuc.edu/projects/rapidABC/plexlines.png",
+        "http://social.cs.uiuc.edu/projects/rapidABC/engaze.png"
+      ],
+      "body": [
+        {
+          "sectionTitle": "Motivation",
+          "sectionContent": "Communication with parents is an essential part of Autism Spectrum Disorder (ASD) diagnosis and treatment. Osborn and Reed found that parents of children diagnosed with ASD anticipated more debriefing of the diagnosis session and general education about ASD after a child-clinician session, yet did not receive it and became frustrated. \nAlthough previous work showed that visualizations could be used for communication in clinical settings, their main focus has been on using visualizations to find reoccurring patterns and detect outliers. Our work extends this literature to uncover features of visualizations that are useful for communicating about ASD through a series of studies on two behavior visualizations, Plexlines and EnGaze."
+        },
+        {
+          "sectionTitle": "Plexlines",
+          "sectionContent": "Plexlines uses color coded circles on a timeline to visualize three different modalities of child behaviors. Plexlines was designed to display communicative behaviors and to aid in identifying developmental delay in the domain of ASD. The diameter of the circle is proportional to the duration of the annotated behavior, which accentuates behaviors with longer duration, such as prolonged eye contact with the examiner. The visualization also offers additional features for its users, such as providing an aggregate view to see patterns over multiple visualizations and allowing users to customize the visualization by removing certain behaviors based on their specific needs. The webtool offers customization capabilities such as filtering, sorting, and hiding certain behaviors. A user study conducted with ASD researchers and clinicians revealed that Plexlines has potential to be integrated into existing behavioral evaluation processes, aid in the detection of developmental delays in young children, and serve as a visual artifact to better communicate with parents."
+        },
+        {
+          "sectionTitle": "EnGaze",
+          "sectionContent": "EnGaze visualizes communicative behaviors, but by using colored rectangles on a timeline. The unique characteristics of EnGaze is the inclusion of detailed examiner's behaviors and its focus on identifying moments of joint attention during an RABC session. Joint attention is a set of communicative behaviors that signals the shared focus of two individuals, and the lack of joint attention is a defining characteristic of ASD. Thus, identifying joint attention, or the lack thereof, can lead to early detection of ASD, and in turn contribute to early intervention. EnGaze provides several features that highlight moments of joint attention. Users can highlight moments when the child responds to the examiner, and customize the visualization through hiding user selected behaviors in the visualization."
+        }
+      ],
+      "onFrontPage" : true,
+      "startYear": 2015
+    }
+  ]
+}

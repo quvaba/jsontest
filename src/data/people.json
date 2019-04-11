@@ -1,0 +1,74 @@
+{
+  "entries": [
+    {
+      "netId": "jgkim2",
+      "status": "current",
+      "degree": "PhD",
+      "photoUrl": "http://social.cs.uiuc.edu/images/people%20pics/jennifer.jpg",
+      "name": "Jennifer G. Kim",
+      "pageUrl": "http://jennifergahee.com/"
+    },
+    {
+      "netId": "hkong6",
+      "status": "current",
+      "degree": "PhD",
+      "photoUrl": "http://social.cs.uiuc.edu/images/people%20pics/Hidy.jpg",
+      "name": "Hidy Kong",
+      "pageUrl": "http://www.hidykong.com/"
+    },
+    {
+      "netId": "kvaccaro",
+      "status": "current",
+      "degree": "PhD",
+      "photoUrl": "https://s3.amazonaws.com/kvaccaro.com/images/photo.png",
+      "name": "Kristen Vaccaro",
+      "pageUrl": "http://www.kvaccaro.com/"
+    },
+    {
+      "netId": "eslamim2",
+      "status": "current",
+      "degree": "PhD",
+      "photoUrl": "http://social.cs.uiuc.edu/images/people%20pics/eslami.jpg",
+      "name": "Motahhare Eslami",
+      "pageUrl": "http://web.engr.illinois.edu/~eslamim2/"
+    },
+    {
+      "netId": "sanorita",
+      "status": "current",
+      "degree": "PhD",
+      "photoUrl": "http://social.cs.uiuc.edu/images/people%20pics/sanorita.jpg",
+      "name": "Sanorita Dey",
+      "pageUrl": "http://sdey4.web.engr.illinois.edu/"
+    },
+    {
+      "netId": "dphuang2",
+      "status": "alumni",
+      "degree": "BS",
+      "photoUrl": "http://social.cs.uiuc.edu/images/people%20pics/noimage.gif",
+      "name": "Dylan Huang",
+      "pageUrl": "https://dylanhuang.com/",
+      "gradYear": 2018,
+      "currentRole": ""
+    },
+    {
+      "netId": "nikita",
+      "status": "alumni",
+      "degree": "PhD",
+      "photoUrl": "http://social.cs.uiuc.edu/images/people%20pics/nikita.jpg",
+      "name": "Nikita Spirin",
+      "pageUrl": "",
+      "gradYear": 2017,
+      "currentRole": ""
+    },
+    {
+      "netId": "efekarakus",
+      "status": "alumni",
+      "degree": "MS",
+      "photoUrl": "http://social.cs.uiuc.edu/images/people%20pics/Efe.jpeg",
+      "name": "Efe Karakus",
+      "pageUrl": "https://www.efekarakus.com/",
+      "gradYear": 2016,
+      "currentRole": "Amazon"
+    }
+  ]
+}

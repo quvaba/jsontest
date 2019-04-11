@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body {
+  background-color: #131b28;
+  background: white;
+}
+
+a {
+  color: #ff84fc;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+li {
+  list-style-type: none;
+  margin-bottom: 1.5em;
+}
+
+.App {
+  text-align: left;
+  font-family: "Montserrat";
+  color: black;
+}
+
+.NavOption {
+  margin: .5em;
+  font-size: 3em;
+  cursor: pointer;
+  text-transform: uppercase;
+  &:hover {
+    color: #ffa700;
+    animation: nav-hover .5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+}
+
+.ListPage {
+  /*margin: 3em 3em 10em 10em;
+  max-width: 60vw;*/
+  min-height: 100vh;
+}
+
+.ProjectPage {
+  margin: 3em;
+}
+
+.ProjectTitle {
+  color: #5cbbc4;
+  font-size: 1.5em;
+  cursor: pointer;
+  &:hover {
+    color: black;
+  }
+}
+
+.ProjectPublications {
+  font-size: .7em;
+  color: #5cbbc4;
+}
+
+.Author {
+  margin-right: .5em;
+  padding: .1em;
+  &:hover {
+    background-color: magenta;
+    text-decoration: none;
+  }
+}
+
+.PersonImage {
+  width: 100%;
+  max-width: 25em;
+  max-height: 25em;
+}
+
+.KarrieIntro {
+  display: inline-block;
+  margin: 2em;
+  vertical-align: text-top;
+}
+
+.InfoSpacing {
+  margin-top: 1.5em;
+}
+
+.Awards {
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+#KarrieText {
+  font-size: 1.3em;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  &:hover {
+    color: cyan;
+    animation: nav-hover .5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+}
+
+#KarrieImage {
+  width: 40%;
+}
+
+.KarrieIntroContainer {
+  background-color: #e6e8ed;
+  border-radius: 5px;
+  margin-bottom: 2em;
+  color: #4c0322;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.PublicationTitle {
+  font-size: 1.5em;
+  border-bottom: 1px solid black;
+  color: #5cbbc4;
+}
+
+.Publication:hover::before {
+  content: "➭";
+  font-size: 1.5em;
+  position: absolute;
+  margin-left: -1em;
+}
+
+.StudentList {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-size: 1.5em;
+  border-bottom: 1px solid black;
+}
+
+.ProjectPage {
+  min-height: 100vh;
+}
+
+.ProjectPageTitle {
+  font-size: 1.6em;
+}
+
+.ProjectSectionTitle {
+  font-size: 1.2em;
+  color: cyan;
+}
+
+.PeopleImageContainer {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+@keyframes nav-hover {
+  from {
+    text-shadow: 0px 0px #5292ff;
+  }
+
+  to {
+    text-shadow: -4px -4px #5292ff;
+  }
+}
+
+
+@keyframes project-title-hover {
+  from {
+    text-shadow: 2px 2px 7px cyan;
+  }
+
+  to {
+    text-shadow: -2px -2px 7px magenta;
+  }
+
+  to {
+    color: black;
+  }
+}
