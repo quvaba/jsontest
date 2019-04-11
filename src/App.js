@@ -8,6 +8,8 @@ import karrieJson from './data/karrie.json';
 import projectsJson from './data/projects.json';
 import publicationsJson from './data/publications.json';
 import {getMatchingAuthors} from './utils/utils.js'
+import {getTopPublications} from './utils/utils.js'
+import karriePic from './data/mit-karrie.jpg';
 import Grid from '@material-ui/core/Grid';
 import {Nav, Navbar, NavbarBrand, NavbarToggler, Collapse} from 'reactstrap';
 
@@ -330,7 +332,7 @@ class ListPage extends Component {
 class Publication extends Component {
   render(){
     let authorList = getMatchingAuthors({peopleJson}, this.props.authors);
-    //handle awards...
+    // sort publications by year
 
     return(
       <div className="Publication">
@@ -474,41 +476,23 @@ class Project extends Component {
     this.props.onClick(this.props.title);
   }
 
+  applyCharCap(description){
+    let short = description;
+    if (short.length > 350){
+      short = short.substring(1, 350) + "...";
+    }
+    return short;
+  }
+
   render(){
     let authorList = getMatchingAuthors({peopleJson}, this.props.authors);
 
     return(
       <div>
         <div onClick={this.handleClick} className="ProjectTitle">{this.props.title}</div>
-        <div>{this.props.description}</div>
+        <div>{this.applyCharCap(this.props.description)}</div>
         {authorList}
         <ProjectPublications publications={this.props.publications} />
-      </div>
-    );
-  }
-}
-
-// [PROPS] publications - an array of publication titles to look up
-class ProjectPublications extends Component {
-  render(){
-
-    let allEntries = publicationsJson.entries;
-    let publications = this.props.publications;
-    let matchingEntries = allEntries.filter(
-      function(value, index, arr){
-        for (var i = 0; i < publications.length; i++) {
-          return (publications[i] == value.title);
-        }
-      }
-    );
-
-    let pubList = matchingEntries.map(
-      (entry) => <a href={entry.url}> {entry.title} </a>
-    );
-
-    return(
-      <div className="ProjectPublications">
-        {pubList}
       </div>
     );
   }
@@ -564,11 +548,14 @@ class HomePage extends Component {
     let projList = featuredProjects.map(
       (project) => <li>
           <div>{project.title}</div>
+          <div>{project.description}</div>
+          <div> {getTopPublications(2, project.project_id, publicationsJson)} </div>
       </li>
     );
 
     return(
       <div>
+        <img src={karriePic}></img>
         <div>
           Our goal is to investigate sociable systems for mediated communication.
           This encompasses a wide range of areas:<br/>

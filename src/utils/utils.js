@@ -23,3 +23,27 @@ export function getMatchingAuthors(peopleJson, netIds){
     <div> {authorList} </div>
   );
 }
+
+//
+// [PARAMS] num - number of most recent publications to return
+//          projectId - the id of the project to search for related
+//                      publications of
+//          publicationsJson - the json to find matching data from
+export function getTopPublications(num, projectId, publicationsJson){
+  let allPublications = publicationsJson.entries;
+  let matchingPubs = allPublications.filter(
+    function(value, index, arr){
+      return(value.project_id === projectId);
+    }
+  );
+
+  let pubList = matchingPubs.map(
+    (pub) => <span key={matchingPubs.indexOf(pub)}>
+                <a href={pub.url}>{pub.title}</a><br/>
+             </span>
+  );
+
+  return(
+    <div> {pubList} </div>
+  );
+}
