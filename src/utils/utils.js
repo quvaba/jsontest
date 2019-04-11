@@ -4,7 +4,7 @@ import React from 'react';
 // [PARAMS] peopleJson - the json to find matching data from
 //          netIds - the array of netIds to be matched
 export function getMatchingAuthors(peopleJson, netIds){
-  let allAuthors = peopleJson.peopleJson.entries;
+  let allAuthors = peopleJson.entries;
   let entryAuthors = allAuthors.filter(function(value, index, arr){
     return (netIds.includes(value.netId));
   });

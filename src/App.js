@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import pagesJson from './data/pages.json';
 import coursesJson from './data/courses.json';
 import peopleJson from './data/people.json';
@@ -16,8 +16,8 @@ import {Nav, Navbar, NavbarBrand, NavbarToggler, Collapse} from 'reactstrap';
 
 /**
  * App - contains everything. Wraps a NavBar and a page contents.
- * [STATE]
- * currentPage - The page being displayed. "Home" by default.
+ *
+ * [STATE] currentPage - The page being displayed. "Home" by default.
  */
 class App extends Component {
 
@@ -77,8 +77,8 @@ class App extends Component {
 /**
  * NavBar - the navigation bar at the top of the page.
  *          https://react-bootstrap.github.io/components/navbar/
- * [PROPS]
- * loadPage - function that passes page clicked to App
+ *
+ * [PROPS] loadPage - function that passes page clicked to App
  */
 class NavBar extends Component {
   constructor(props){
@@ -132,9 +132,9 @@ class NavBar extends Component {
 
 /**
  * NavOption - one of the links in the navigation bar.
- * [PROPS]
- * onClick - function to be called when clicked.
- * title - the title of the page it links to
+ *
+ * [PROPS] onClick - function to be called when clicked.
+ *         title - the title of the page it links to
  */
 class NavOption extends Component {
   constructor(props){
@@ -157,16 +157,17 @@ class NavOption extends Component {
 }
 
 
-                            ////////////////////////////////////////////////////
-                            //                                                //
-                            //                INDIVIDUAL PAGES                //
-                            //                                                //
-                            ////////////////////////////////////////////////////
+/*****************************************************************************************************************
 
-// ListPage -
-//
-// [PROPS] json - the json to be read from
-//         pageType - the type of page to render
+                                            INDIVIDUAL PAGES
+
+*****************************************************************************************************************/
+
+/* ListPage - includes People, Projects, Publications, Karrie, and Courses
+ *
+ * [PROPS] json - the json to be read from
+ *         pageType - the type of page to render
+ */
 class ListPage extends Component {
   constructor(props){
     super(props);
@@ -324,14 +325,15 @@ class ListPage extends Component {
   }
 }
 
+
 /*
- * Publication -
- * [PROPS] title, year, conference, url, authors (array), awards
+ * Publication - An individual publication object
  *
+ * [PROPS] title, year, conference, url, authors (array), awards
  */
 class Publication extends Component {
   render(){
-    let authorList = getMatchingAuthors({peopleJson}, this.props.authors);
+    let authorList = getMatchingAuthors(peopleJson, this.props.authors);
     // sort publications by year
 
     return(
@@ -345,20 +347,78 @@ class Publication extends Component {
 }
 
 
+/* Person - An individual person object
+ *
+ * [PROPS] name, pageUrl, photoUrl, status, degree
+ */
+class Person extends Component {
+  render(){
+    return(
+      <span className="Person">
+        <div className="PeopleImageContainer">
+          <img className="PersonImage" src={this.props.photoUrl} />
+        </div>
+        <div>
+          {this.props.pageUrl.length > 0 ?
+          (<a href={this.props.pageUrl}>{this.props.name} </a>):
+          (<span>{this.props.name}</span>)
+        }
+        </div>
+        <div>{this.props.degree} {this.props.gradYear ?
+          (<span>{this.props.gradYear}</span>) :
+          (<span></span>)
+          }
+        {this.props.currentRole ?
+          (<div>Now at <b>{this.props.currentRole}</b></div>):
+          (<span></span>)
+        }
+        </div>
+      </span>
+    );
+  }
+}
+
+
+// Project -
+// up to 2 images
+// unspecified length array of paired paragraph and header
+// title, authors, motivation
+// links?
+// [PROPS]
+class Project extends Component {
+  constructor(props){
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(){
+    this.props.onClick(this.props.title);
+  }
+
+  applyCharCap(description){
+    let short = description;
+    if (short.length > 350){
+      short = short.substring(1, 350) + "...";
+    }
+    return short;
+  }
+
+  render(){
+    let authorList = getMatchingAuthors(peopleJson, this.props.authors);
+
+    return(
+      <div>
+        <div onClick={this.handleClick} className="ProjectTitle">{this.props.title}</div>
+        <div>{this.applyCharCap(this.props.description)}</div>
+        {authorList}
+      </div>
+    );
+  }
+}
+
+
 class Karrie extends Component {
   render(){
-  /*  let allProjects = projectsJson.entries;
-    let featuredProjects = allProjects.filter(
-      function(value, index, arr){
-        return (value.onFrontPage == true);
-      }
-    );
-
-    let projList = featuredProjects.map(
-      (project) => <li>
-          <div>{project.title}</div>
-      </li>
-    );*/
 
     return(
       <div>
@@ -390,37 +450,6 @@ class Karrie extends Component {
           </div>
 
       </div>
-    );
-  }
-}
-
-
-/* Person -
- * [PROPS] name, pageUrl, photoUrl, status, degree
- */
-class Person extends Component {
-  render(){
-    return(
-      <span className="Person">
-        <div className="PeopleImageContainer">
-          <img className="PersonImage" src={this.props.photoUrl} />
-        </div>
-        <div>
-          {this.props.pageUrl.length > 0 ?
-          (<a href={this.props.pageUrl}>{this.props.name} </a>):
-          (<span>{this.props.name}</span>)
-        }
-        </div>
-        <div>{this.props.degree} {this.props.gradYear ?
-          (<span>{this.props.gradYear}</span>) :
-          (<span></span>)
-          }
-        {this.props.currentRole ?
-          (<div>Now at <b>{this.props.currentRole}</b></div>):
-          (<span></span>)
-        }
-        </div>
-      </span>
     );
   }
 }
@@ -460,44 +489,6 @@ class Course extends Component {
   }
 }
 
-// Project -
-// up to 2 images
-// unspecified length array of paired paragraph and header
-// title, authors, motivation
-// links?
-// [PROPS]
-class Project extends Component {
-  constructor(props){
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(){
-    this.props.onClick(this.props.title);
-  }
-
-  applyCharCap(description){
-    let short = description;
-    if (short.length > 350){
-      short = short.substring(1, 350) + "...";
-    }
-    return short;
-  }
-
-  render(){
-    let authorList = getMatchingAuthors({peopleJson}, this.props.authors);
-
-    return(
-      <div>
-        <div onClick={this.handleClick} className="ProjectTitle">{this.props.title}</div>
-        <div>{this.applyCharCap(this.props.description)}</div>
-        {authorList}
-        <ProjectPublications publications={this.props.publications} />
-      </div>
-    );
-  }
-}
-
 class ProjectPage extends Component {
   render(){
     //search for matching
@@ -508,7 +499,7 @@ class ProjectPage extends Component {
     });
 
     targetEntry = targetEntry[0];
-    let authorList = getMatchingAuthors({peopleJson}, targetEntry.authorIds);
+    let authorList = getMatchingAuthors(peopleJson, targetEntry.authorIds);
 
     let bodyList = targetEntry.body.map(
       (bodySection) => <li key={targetEntry.body.indexOf(bodySection)}>
