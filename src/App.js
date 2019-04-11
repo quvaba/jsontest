@@ -532,7 +532,7 @@ class HomePage extends Component {
     let allProjects = projectsJson.entries;
     let featuredProjects = allProjects.filter(
       function(value, index, arr){
-        return (value.onFrontPage == true);
+        return (value.onFrontPage === true);
       }
     );
 
