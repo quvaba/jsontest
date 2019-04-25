@@ -2,7 +2,7 @@
   "entries": [
     {
       "title": "Understanding Identity Presentation in Medical Crowdfunding",
-      "project_id":"medcrowdfunding",
+      "projectId":"medcrowdfunding",
       "year": 2018,
       "conference": "CHI 2018",
       "url": "http://social.cs.uiuc.edu/papers/Kim-CHI18.pdf",
@@ -11,7 +11,7 @@
     },
     {
       "title": "Effects of Socially Stigmatized Crowdfunding Campaigns in Shaping Opinions",
-      "project_id":"stigma_opinion",
+      "projectId":"stigma_opinion",
       "year": 2018,
       "conference": "CHI 2018",
       "url": "http://social.cs.uiuc.edu/papers/StigmatizedCrowdfunding.pdf",
@@ -20,7 +20,7 @@
     },
     {
       "title": "A Comparative Study of Visualizations with Different Granularities of Behavior for Communicating about Autism",
-      "project_id":"plexlines",
+      "projectId":"plexlines",
       "year": 2018,
       "conference": "CSCW 2018",
       "url": "http://social.cs.uiuc.edu/papers/Kong-CSCW18.pdf",
@@ -29,7 +29,7 @@
     },
     {
       "title": "The Power of Collective Endorsements: Credibility Factors in Medical Crowdfunding Campaigns",
-      "project_id":"medcrowdfunding",
+      "projectId":"medcrowdfunding",
       "year": 2016,
       "conference": "CHI 2016",
       "url": "http://jennifergahee.com/publications/medicalcrowdfunding.chi16.kim.pdf",

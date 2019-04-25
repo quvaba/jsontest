@@ -1,12 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
+/***************************/
+/*        VARIABLES        */
+/***************************/
+
+$main-blue: #268FFF;
+$main-orange: #FFA700;
+$light-orange: #FFAA42;
+$beige: #FFEEC6;
+$light-beige: #FFF5E5;
+
 body {
-  background-color: #131b28;
   background: white;
 }
 
 a {
-  color: #ff84fc;
+  color: $light-orange;
   text-decoration: none;
   &:hover {
     text-decoration: none;
@@ -27,11 +36,11 @@ li {
 
 .NavOption {
   margin: .5em;
-  font-size: 3em;
+  font-size: 2.5em;
   cursor: pointer;
   text-transform: uppercase;
   &:hover {
-    color: #ffa700;
+    color: $main-orange;
     animation: nav-hover .5s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
@@ -49,7 +58,7 @@ li {
 }
 
 .ProjectTitle {
-  color: #5cbbc4;
+  color: $main-blue;
   font-size: 1.5em;
   cursor: pointer;
   &:hover {
@@ -57,16 +66,11 @@ li {
   }
 }
 
-.ProjectPublications {
-  font-size: .7em;
-  color: #5cbbc4;
-}
-
 .Author {
   margin-right: .5em;
   padding: .1em;
   &:hover {
-    background-color: magenta;
+    background-color: $light-orange;
     text-decoration: none;
   }
 }
@@ -120,7 +124,7 @@ li {
 .PublicationTitle {
   font-size: 1.5em;
   border-bottom: 1px solid black;
-  color: #5cbbc4;
+  color: $main-blue;
 }
 
 .Publication:hover::before {
@@ -160,11 +164,11 @@ li {
 
 @keyframes nav-hover {
   from {
-    text-shadow: 0px 0px #5292ff;
+    text-shadow: 0px 0px $main-blue;
   }
 
   to {
-    text-shadow: -4px -4px #5292ff;
+    text-shadow: -4px -4px $main-blue;
   }
 }
 

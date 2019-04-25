@@ -8,6 +8,7 @@ import karrieJson from './data/karrie.json';
 import projectsJson from './data/projects.json';
 import publicationsJson from './data/publications.json';
 import {getMatchingAuthors} from './utils/utils.js'
+import {getMatchingPublications} from './utils/utils.js'
 import {getTopPublications} from './utils/utils.js'
 import karriePic from './data/mit-karrie.jpg';
 import Grid from '@material-ui/core/Grid';
@@ -59,7 +60,7 @@ class App extends Component {
         pageContents = <ListPage json={coursesJson} pageType = "Courses"/>;
         break;
       default:
-        pageContents = <ProjectPage json={projectsJson} title={current} />;
+        pageContents = <ProjectPage json={projectsJson} id={current} />;
         break;
     }
 
@@ -233,6 +234,8 @@ class ListPage extends Component {
 
       case "Projects":
         let projects = this.props.json.entries;
+        projects.sort((a, b) => (a.startYear < b.startYear) ? 1 : -1);
+
         entryList =
         <Grid container justify="center">
         <Grid item xs={10} sm={8} md={8} lg={6}>
@@ -244,6 +247,7 @@ class ListPage extends Component {
                           description={project.description}
                           publications={project.publications}
                           onClick={this.handleClick}
+                          id={project.projectId}
                         />
                      </li>
         )}
@@ -253,23 +257,25 @@ class ListPage extends Component {
 
       case "Publications":
         let publications = this.props.json.entries;
+        publications.sort((a, b) => (a.year < b.year) ? 1 : -1);
+
         entryList =
-        <Grid container justify="center">
-        <Grid item xs={10} sm={8} md={8} lg={6}>
-        {publications.map(
-          (publication) => <li key={publications.indexOf(publication)}>
-                        <Publication
-                          title={publication.title}
-                          year={publication.year}
-                          conference={publication.conference}
-                          url={publication.url}
-                          authors={publication.authorIds}
-                          awards={publication.awards}
-                        />
-                     </li>
-        )}
-        </Grid>
-        </Grid>
+          <Grid container justify="center">
+            <Grid item xs={10} sm={8} md={8} lg={6}>
+              {publications.map(
+                (publication) => <li key={publications.indexOf(publication)}>
+                              <Publication
+                                title={publication.title}
+                                year={publication.year}
+                                conference={publication.conference}
+                                url={publication.url}
+                                authors={publication.authorIds}
+                                awards={publication.awards}
+                              />
+                           </li>
+              )}
+            </Grid>
+          </Grid>
         break;
 
       case "Karrie":
@@ -379,12 +385,10 @@ class Person extends Component {
 }
 
 
-// Project -
-// up to 2 images
-// unspecified length array of paired paragraph and header
-// title, authors, motivation
-// links?
-// [PROPS]
+/* Project - An individual project object.
+ *
+ * [PROPS] title, description, author, id
+ */
 class Project extends Component {
   constructor(props){
     super(props);
@@ -392,7 +396,7 @@ class Project extends Component {
   }
 
   handleClick(){
-    this.props.onClick(this.props.title);
+    this.props.onClick(this.props.id);
   }
 
   applyCharCap(description){
@@ -404,16 +408,14 @@ class Project extends Component {
   }
 
   render(){
-    let authorList = getMatchingAuthors(peopleJson, this.props.authors);
-
     return(
       <div>
         <div onClick={this.handleClick} className="ProjectTitle">{this.props.title}</div>
         <div>{this.applyCharCap(this.props.description)}</div>
-        {authorList}
       </div>
     );
   }
+
 }
 
 
@@ -491,15 +493,15 @@ class Course extends Component {
 
 class ProjectPage extends Component {
   render(){
-    //search for matching
-    let allEntries = this.props.json.entries;
-    let title = this.props.title;
+    let allEntries = projectsJson.entries;
+    let id = this.props.id;
     let targetEntry = allEntries.filter(function(value, index, arr){
-      return (title === value.title);
+      return (id === value.projectId);
     });
 
     targetEntry = targetEntry[0];
     let authorList = getMatchingAuthors(peopleJson, targetEntry.authorIds);
+    let publicationList = getMatchingPublications(id, publicationsJson);
 
     let bodyList = targetEntry.body.map(
       (bodySection) => <li key={targetEntry.body.indexOf(bodySection)}>
@@ -514,8 +516,9 @@ class ProjectPage extends Component {
       <div className="ProjectPage">
         <Grid container justify="center">
           <Grid item xs={12} sm={8} lg={6}>
-            <div className="ProjectPageTitle"> {title} </div>
+            <div className="ProjectPageTitle"> {targetEntry.title} </div>
             <div> {authorList} </div>
+            <div> {publicationList} </div>
             <img src={targetEntry.imageUrls[0]}/>
             {bodyList}
             <img src={targetEntry.imageUrls[1]}/>
@@ -540,7 +543,7 @@ class HomePage extends Component {
       (project) => <li>
           <div>{project.title}</div>
           <div>{project.description}</div>
-          <div> {getTopPublications(2, project.project_id, publicationsJson)} </div>
+          <div> {getTopPublications(2, project.projectId, publicationsJson)} </div>
       </li>
     );
 

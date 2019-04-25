@@ -33,7 +33,30 @@ export function getTopPublications(num, projectId, publicationsJson){
   let allPublications = publicationsJson.entries;
   let matchingPubs = allPublications.filter(
     function(value, index, arr){
-      return(value.project_id === projectId);
+      return(value.projectId === projectId);
+    }
+  );
+
+  matchingPubs.sort((a, b) => (a.year < b.year) ? 1 : -1);
+  matchingPubs = matchingPubs.slice(0, 2);
+
+  let pubList = matchingPubs.map(
+    (pub) => <span key={matchingPubs.indexOf(pub)}>
+                <a href={pub.url}>{pub.title}</a><br/>
+             </span>
+  );
+
+  return(
+    <div> {pubList} </div>
+  );
+}
+
+// Same as getTopPublications, but returns all matching pubs
+export function getMatchingPublications(projectId, publicationsJson){
+  let allPublications = publicationsJson.entries;
+  let matchingPubs = allPublications.filter(
+    function(value, index, arr){
+      return(value.projectId === projectId);
     }
   );
 

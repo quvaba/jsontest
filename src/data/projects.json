@@ -2,7 +2,7 @@
   "entries":[
     {
       "title": "The invisible Side of Medical Crowdfunding",
-      "project_id": "medcrowdfunding",
+      "projectId": "medcrowdfunding",
       "authorIds": ["jgkim2"],
       "description": "In medical crowdfunding campaigns, community support plays a critical role, but community support behaviors are often invisible on medical crowdfunding sites. This project investigates invisible support behaviors and how to integrate them into existing medical crowdfunding sites.",
       "imageUrls": [
@@ -23,7 +23,7 @@
     },
     {
       "title": "Plexlines and EnGaze: Visualizing autism pre-screening sessions",
-      "project_id": "plexlines",
+      "projectId": "plexlines",
       "authorIds": ["hkong6"],
       "description": " We present a system to visualize the annotations of videos of children engaged in an interactive protocol assessing communicative behavior. Annotations capture the child's gestures, gaze, and vocalization -- important developmental indicators. From these annotations, we create a graphical fingerprint for each session. In doing so, we introduce Plexlines and EnGaze, two webtools for visualizing multiple types of information layered as timelines. ",
       "body": "",
