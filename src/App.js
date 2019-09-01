@@ -1,16 +1,20 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import './App.scss';
+
 import pagesJson from './data/pages.json';
 import coursesJson from './data/courses.json';
 import peopleJson from './data/people.json';
 import karrieJson from './data/karrie.json';
 import projectsJson from './data/projects.json';
 import publicationsJson from './data/publications.json';
+
 import {getMatchingAuthors} from './utils/utils.js'
 import {getMatchingPublications} from './utils/utils.js'
 import {getTopPublications} from './utils/utils.js'
+
 import karriePic from './data/mit-karrie.jpg';
+
 import Grid from '@material-ui/core/Grid';
 import {Nav, Navbar, NavbarBrand, NavbarToggler, Collapse} from 'reactstrap';
 
@@ -419,6 +423,10 @@ class Project extends Component {
 }
 
 
+/* Karrie - Karrie's CV
+ *
+ * [PROPS] name, position, email, phone, awards
+ */
 class Karrie extends Component {
   render(){
 
@@ -456,7 +464,11 @@ class Karrie extends Component {
   }
 }
 
-// COURSE
+
+/* Course - Page full of social spaces courses.
+ *
+ * [PROPS] url, title, abbrev, schedule, description
+ */
 class Course extends Component {
   render(){
     return(
@@ -491,6 +503,11 @@ class Course extends Component {
   }
 }
 
+
+/* ProjectPage - An individual project's page.
+ *
+ * [PROPS]
+ */
 class ProjectPage extends Component {
   render(){
     let allEntries = projectsJson.entries;
@@ -530,6 +547,11 @@ class ProjectPage extends Component {
   }
 }
 
+
+/* HomePage - The home page of the social spaces website.
+ *
+ * [PROPS]
+ */
 class HomePage extends Component {
   render(){
     let allProjects = projectsJson.entries;
@@ -570,5 +592,7 @@ class HomePage extends Component {
     );
   }
 }
+
+
 
 export default App;
